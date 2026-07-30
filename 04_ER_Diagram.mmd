@@ -41,7 +41,7 @@ User{
     date created_at 
 }
 
-#user merged with admin
+%%user merged with admin
 
 Product{
     ObjectId product_id PK
@@ -83,11 +83,11 @@ Order{
     ObjectId user_id FK
     string payment_method
     string shipping_address
-    final_price
+    float final_price
     date order_date
 }
 
-#order merged with transaction, created orderitem
+%%order merged with transaction, created orderitem
 
 OrderItem{
     ObjectId orderitem_id PK
@@ -143,19 +143,19 @@ ProductVariant{
     ObjectId category_id FK
     ObjectId subcategory_id FK
 
-    #mouse
+    %%mouse
     int dpi
     string sensor_type
     int button_count
 
-    #keyboard
+    %%keyboard
     string language
     int key_count
     string keyboard_form
     ObjectId switch_id FK
     ObjectId keycap_id FK
 
-    #headphone
+    %%headphone
     string sound_support "stereo | 5.1 | 7.1"
     boolean is_headset
     string freq_range
@@ -176,7 +176,7 @@ Keycap{
     string keycap_name
 }
 
-#added manufacturer and distributor/platforms
+%%added manufacturer and distributor/platforms
 
 Manufacturer{
     ObjectId manufacturer_id PK
