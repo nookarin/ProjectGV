@@ -1,0 +1,7 @@
+{
+  "name": "team-practice",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Team practice repo for Git-for-teams exercises"
+}
