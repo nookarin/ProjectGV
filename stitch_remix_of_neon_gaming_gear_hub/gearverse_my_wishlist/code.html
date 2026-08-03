@@ -1,0 +1,433 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Wishlist | GEARVERSE</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700;800&amp;family=Space+Mono:wght@700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..900&amp;family=Space+Mono:wght@100..900&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(26, 24, 37, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(157, 78, 221, 0.2);
+        }
+        .neon-glow:hover {
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
+            border-color: rgba(157, 78, 221, 0.8);
+        }
+        .image-zoom:hover img {
+            transform: scale(1.05);
+        }
+        body {
+            background-color: #0F0E17;
+            color: #e5e0ee;
+            overflow-x: hidden;
+        }
+        .bg-mesh {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 50%, #1a1825 0%, #0f0e17 100%);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #0F0E17;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #9D4EDD;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#2a2933",
+                        "error": "#ffb4ab",
+                        "tertiary-container": "#d500bf",
+                        "primary-fixed": "#f2daff",
+                        "on-surface-variant": "#d0c2d5",
+                        "primary-fixed-dim": "#e0b6ff",
+                        "outline-variant": "#4d4353",
+                        "on-primary-container": "#fffdff",
+                        "on-error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#ddb8ff",
+                        "primary": "#e0b6ff",
+                        "secondary-container": "#62259b",
+                        "surface-dim": "#13121b",
+                        "on-primary-fixed-variant": "#6a0baa",
+                        "secondary": "#ddb8ff",
+                        "on-surface": "#e5e0ee",
+                        "on-tertiary-fixed-variant": "#840076",
+                        "on-tertiary-container": "#fffeff",
+                        "tertiary": "#fface8",
+                        "surface": "#13121b",
+                        "tertiary-fixed": "#ffd7f0",
+                        "inverse-surface": "#e5e0ee",
+                        "surface-container": "#201e28",
+                        "surface-bright": "#3a3842",
+                        "secondary-fixed": "#f0dbff",
+                        "on-secondary-fixed-variant": "#62259b",
+                        "on-secondary-fixed": "#2c0051",
+                        "on-primary": "#4c007d",
+                        "surface-container-low": "#1c1a24",
+                        "on-tertiary": "#5e0053",
+                        "on-background": "#e5e0ee",
+                        "surface-container-highest": "#35333e",
+                        "on-tertiary-fixed": "#3a0033",
+                        "on-secondary-container": "#d1a1ff",
+                        "surface-tint": "#e0b6ff",
+                        "primary-container": "#9d4edd",
+                        "on-primary-fixed": "#2e004e",
+                        "tertiary-fixed-dim": "#fface8",
+                        "outline": "#998d9e",
+                        "inverse-on-surface": "#312f39",
+                        "background": "#13121b",
+                        "error-container": "#93000a",
+                        "inverse-primary": "#8433c4",
+                        "on-secondary": "#490081",
+                        "on-error": "#690005",
+                        "surface-variant": "#35333e",
+                        "surface-container-lowest": "#0e0d16"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "stack-lg": "32px",
+                        "margin-mobile": "20px",
+                        "container-max": "1440px",
+                        "stack-sm": "8px",
+                        "margin-desktop": "80px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Sora"],
+                        "body-lg": ["Sora"],
+                        "body-md": ["Sora"],
+                        "display-lg": ["Sora"],
+                        "label-caps": ["Space Mono"],
+                        "headline-md": ["Sora"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["40px", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "0.02em", "fontWeight": "800"}],
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="custom-scrollbar selection:bg-primary-container selection:text-white">
+<div class="bg-mesh"></div>
+
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/70 dark:bg-surface/70 backdrop-blur-md border-b border-primary/20 shadow-[0_0_15px_rgba(168,85,247,0.3)]">
+<div class="flex justify-between items-center px-6 md:px-margin-desktop h-20 w-full">
+<div class="font-display-lg text-headline-md tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-primary to-tertiary">
+                GEARVERSE
+            </div>
+<nav class="hidden md:flex items-center gap-stack-lg">
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">STORE</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">GEAR</a>
+<a class="font-body-md text-primary border-b-2 border-primary pb-1" href="#">WISHLIST</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">COMMUNITY</a>
+</nav>
+<div class="flex items-center gap-stack-md">
+<button class="material-symbols-outlined text-primary p-2 hover:bg-primary/10 transition-all duration-300 rounded-full active:scale-95">notifications</button>
+<button class="material-symbols-outlined text-primary p-2 hover:bg-primary/10 transition-all duration-300 rounded-full active:scale-95">shopping_cart</button>
+<button class="material-symbols-outlined text-primary p-2 hover:bg-primary/10 transition-all duration-300 rounded-full active:scale-95">person</button>
+</div>
+</div>
+</header>
+<main class="pt-32 pb-stack-lg px-6 md:px-margin-desktop max-w-container-max mx-auto">
+<!-- Wishlist Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-stack-lg gap-stack-md">
+<div>
+<span class="font-label-caps text-tertiary tracking-widest mb-2 block uppercase">Your Arsenal</span>
+<h1 class="font-display-lg text-headline-lg text-on-surface">WISHLIST</h1>
+<p class="font-body-md text-on-surface-variant max-w-xl mt-2">Ready your high-performance setup. Your saved items are primed for deployment.</p>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="flex items-center gap-2 px-6 py-3 border border-primary/40 rounded-lg hover:bg-primary/10 transition-all duration-300 font-label-caps text-primary active:scale-95" onclick="shareWishlist()">
+<span class="material-symbols-outlined text-[18px]">share</span>
+                    SHARE WISHLIST
+                </button>
+<button class="flex items-center gap-2 px-6 py-3 bg-error-container/20 border border-error/20 rounded-lg hover:bg-error/30 transition-all duration-300 font-label-caps text-error active:scale-95" onclick="clearAll()">
+<span class="material-symbols-outlined text-[18px]">delete_sweep</span>
+                    CLEAR ALL
+                </button>
+</div>
+</div>
+<!-- Wishlist Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-gutter" id="wishlist-grid">
+<!-- Item 1: Keyboard -->
+<div class="glass-card neon-glow rounded-xl overflow-hidden flex flex-col group image-zoom transition-all duration-500">
+<div class="relative h-64 overflow-hidden bg-surface-container-low">
+<div class="absolute top-4 right-4 z-10">
+<button class="material-symbols-outlined bg-surface-container-highest/80 text-error p-2 rounded-full backdrop-blur-sm hover:bg-error hover:text-white transition-all active:scale-90">close</button>
+</div>
+<div class="absolute top-4 left-4 z-10">
+<span class="font-label-caps bg-tertiary text-on-tertiary px-3 py-1 rounded shadow-[0_0_8px_rgba(255,172,232,0.6)]">NEW</span>
+</div>
+<img class="w-full h-full object-cover transition-transform duration-700" data-alt="A high-end mechanical gaming keyboard with vibrant RGB lighting reflecting off a matte black frame. The shot is a close-up angle showing the intricate mechanical switches. The lighting is cinematic, using neon purple and cyan highlights against a deep dark background, emphasizing the futuristic tech aesthetic of GEARVERSE." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHuN3Wf-CDeFy1iTsZbj5edtOlgXI9bIEop0QN18W1wroin6_K2tk2l39TSAZ9Biza8k7xjdK7olxysr1iGmS4M4_D6_ZINSagNh85u12inHAOWFixHQ8A5ae6ZyiuN_u0qcbyWve_rOc0i8fzRSUInl6gXEFo_aT3xGcW15inVyEICTXu8skXIadIfTHIQxZY5RnZCKzd5JnwjYst_ZPWJpWqPQnbILJEUEU5d1xbTZWG1bzkALV7">
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="mb-4">
+<h3 class="font-headline-md text-on-surface mb-1 truncate">NEON-STRIKE 80</h3>
+<p class="font-label-caps text-on-surface-variant text-[10px]">MECHANICAL KEYBOARD / OPTICAL SWITCHES</p>
+</div>
+<div class="mt-auto flex items-center justify-between">
+<span class="font-headline-md text-primary">$189.99</span>
+<button class="bg-primary-container text-white px-4 py-2 rounded-lg font-label-caps hover:bg-primary transition-all duration-300 shadow-[0_0_15px_rgba(168,85,247,0.4)] active:scale-95 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+                            ADD
+                        </button>
+</div>
+</div>
+</div>
+<!-- Item 2: Mouse -->
+<div class="glass-card neon-glow rounded-xl overflow-hidden flex flex-col group image-zoom transition-all duration-500">
+<div class="relative h-64 overflow-hidden bg-surface-container-low">
+<div class="absolute top-4 right-4 z-10">
+<button class="material-symbols-outlined bg-surface-container-highest/80 text-error p-2 rounded-full backdrop-blur-sm hover:bg-error hover:text-white transition-all active:scale-90">close</button>
+</div>
+<div class="absolute top-4 left-4 z-10">
+<span class="font-label-caps bg-secondary-container text-on-secondary-container px-3 py-1 rounded shadow-[0_0_8px_rgba(98,37,155,0.6)]">PRO</span>
+</div>
+<img class="w-full h-full object-cover transition-transform duration-700" data-alt="An ultra-lightweight ergonomic gaming mouse with a honeycomb shell design. The mouse features a glowing neon pink scroll wheel and RGB underglow that casts a soft magenta light on a dark carbon fiber surface. Professional product photography with sharp focus and high contrast, echoing a cyberpunk, tech-focused mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaIykFaIzdEPMNMlqYNjJR7VU6zLG39I9AeAW2j45FiZ5k0BhmYh2sVeLs_kfYSP7LUet67_ayronCRXk1bc20LevUflvkFnqDRR-4m0Q4eN6_h6xv8U40OXAAT_9xxahx537Mh20NZZLgTjSLrke0oHqyxT-SY1OHeDd7RZpbvWT9fzgQyWpCl21fYpeRf7AILDt5k553QlZo6u99yfa8NcmxSWRihl6pbtPfUCrDcc9ZWxtCMTIv">
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="mb-4">
+<h3 class="font-headline-md text-on-surface mb-1 truncate">APEX-GLIDE X</h3>
+<p class="font-label-caps text-on-surface-variant text-[10px]">ULTRA-LIGHTWEIGHT / 26K DPI</p>
+</div>
+<div class="mt-auto flex items-center justify-between">
+<span class="font-headline-md text-primary">$124.50</span>
+<button class="bg-primary-container text-white px-4 py-2 rounded-lg font-label-caps hover:bg-primary transition-all duration-300 shadow-[0_0_15px_rgba(168,85,247,0.4)] active:scale-95 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+                            ADD
+                        </button>
+</div>
+</div>
+</div>
+<!-- Item 3: PC -->
+<div class="glass-card neon-glow rounded-xl overflow-hidden flex flex-col group image-zoom transition-all duration-500 lg:col-span-1 xl:col-span-1">
+<div class="relative h-64 overflow-hidden bg-surface-container-low">
+<div class="absolute top-4 right-4 z-10">
+<button class="material-symbols-outlined bg-surface-container-highest/80 text-error p-2 rounded-full backdrop-blur-sm hover:bg-error hover:text-white transition-all active:scale-90">close</button>
+</div>
+<div class="absolute top-4 left-4 z-10">
+<span class="font-label-caps bg-error text-on-error px-3 py-1 rounded shadow-[0_0_8px_rgba(255,0,229,0.6)]">SALE</span>
+</div>
+<img class="w-full h-full object-cover transition-transform duration-700" data-alt="A custom liquid-cooled gaming PC with transparent tempered glass panels. Inside, glowing neon purple coolant flows through tubes, and the high-end components are illuminated by synchronized RGB lighting. The machine sits in a dimly lit high-tech room, looking like a piece of advanced machinery from a sci-fi future." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtsyuEQnOdboKWw68QESbEW5hxCevvluOFgGGKHwZaSCQn1EDEcwGVBKzylDdKr8acPNtOknJ-6_dhBaLskubsqkRfuPj16Pp06eNBoxuWQWHxIrN1_MSm-DImrshWpW8EIv4qehzXtMR9sqPKbg-Owmq4m5A2QL5l4k5Ph6yUvjyzLBVpe0NHvRNkc-BYIzbR7zURuGbzBvtEwIBw9XqRQf-WvSOc5zk0uhWnDn093bfDrw4zT4vl">
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="mb-4">
+<h3 class="font-headline-md text-on-surface mb-1 truncate">VOID-WALKER V2</h3>
+<p class="font-label-caps text-on-surface-variant text-[10px]">RTX 5090 / 64GB DDR5 / 4TB SSD</p>
+</div>
+<div class="mt-auto flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-body-md text-on-surface-variant line-through text-sm">$4,299</span>
+<span class="font-headline-md text-tertiary">$3,899.99</span>
+</div>
+<button class="bg-primary-container text-white px-4 py-2 rounded-lg font-label-caps hover:bg-primary transition-all duration-300 shadow-[0_0_15px_rgba(168,85,247,0.4)] active:scale-95 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+                            ADD
+                        </button>
+</div>
+</div>
+</div>
+<!-- Item 4: Headset -->
+<div class="glass-card neon-glow rounded-xl overflow-hidden flex flex-col group image-zoom transition-all duration-500">
+<div class="relative h-64 overflow-hidden bg-surface-container-low">
+<div class="absolute top-4 right-4 z-10">
+<button class="material-symbols-outlined bg-surface-container-highest/80 text-error p-2 rounded-full backdrop-blur-sm hover:bg-error hover:text-white transition-all active:scale-90">close</button>
+</div>
+<img class="w-full h-full object-cover transition-transform duration-700" data-alt="Futuristic wireless gaming headset with a carbon fiber headband and plush earcups. The sides of the earcups feature a glowing hexagonal pattern in neon purple. The background is a sleek dark tech environment with blurred lights. The image conveys high-fidelity sound and premium build quality for competitive gaming." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHFXQD33tzrsT0xyRajJpeKIhy3j-an7JhtSbM1s2Jr_KvTx91VE6l5t5fzx8GTX7LqNqqjxZGK1NKOiTCanFkIX6mwroNjCmzbEjH3aKpWlcD6q2YQemm8FoqGSGLAyE2XDzYn3W0VGL_1ei1r_o05jJbsyIBX6cs0L7gddWKXX7I6vRXSNGMZeE7VMCjwEAxcvyn5j_L4H8V1W4dL1rYmHjhJk8dyjpTHgDLelcx12jiWwCMQXQK">
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="mb-4">
+<h3 class="font-headline-md text-on-surface mb-1 truncate">SONIC-REAPER ELITE</h3>
+<p class="font-label-caps text-on-surface-variant text-[10px]">SPATIAL AUDIO / NOISE CANCELING</p>
+</div>
+<div class="mt-auto flex items-center justify-between">
+<span class="font-headline-md text-primary">$249.00</span>
+<button class="bg-primary-container text-white px-4 py-2 rounded-lg font-label-caps hover:bg-primary transition-all duration-300 shadow-[0_0_15px_rgba(168,85,247,0.4)] active:scale-95 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+                            ADD
+                        </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Empty State (Hidden by default) -->
+<div class="hidden flex-col items-center justify-center py-32 text-center" id="empty-state">
+<span class="material-symbols-outlined text-[80px] text-surface-container-highest mb-6">inventory_2</span>
+<h2 class="font-headline-lg text-on-surface-variant">YOUR ARSENAL IS EMPTY</h2>
+<p class="font-body-lg text-outline mt-4 max-w-md">Equip yourself with the latest tech. Browse our store to add items to your wishlist.</p>
+<a class="mt-stack-lg px-10 py-4 bg-primary-container text-white rounded-lg font-label-caps hover:bg-primary transition-all duration-300 shadow-[0_0_20px_rgba(168,85,247,0.5)] active:scale-95" href="#">CONTINUE SHOPPING</a>
+</div>
+</main>
+<!-- Share Modal (Simulated) -->
+<div class="fixed inset-0 z-[100] hidden items-center justify-center p-6 bg-black/80 backdrop-blur-sm" id="share-modal">
+<div class="glass-card max-w-md w-full p-8 rounded-xl relative">
+<button class="absolute top-4 right-4 material-symbols-outlined text-on-surface-variant hover:text-white" onclick="toggleShareModal()">close</button>
+<h3 class="font-headline-md text-on-surface mb-4">SHARE YOUR ARSENAL</h3>
+<p class="font-body-md text-on-surface-variant mb-6">Let your squad see your setup or hint at those birthday gifts.</p>
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-2 bg-surface-container-low p-4 rounded-lg border border-primary/20">
+<input class="bg-transparent border-none focus:ring-0 text-primary font-body-md flex-grow" readonly="" type="text" value="https://gearverse.io/wishlist/usr_48291">
+<button class="material-symbols-outlined text-primary hover:text-tertiary">content_copy</button>
+</div>
+<div class="grid grid-cols-4 gap-4 mt-2">
+<button class="p-3 bg-surface-container-highest rounded-lg hover:bg-primary/20 transition-all text-on-surface-variant hover:text-primary border border-white/5">
+<svg class="w-6 h-6 mx-auto fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg>
+</button>
+<button class="p-3 bg-surface-container-highest rounded-lg hover:bg-primary/20 transition-all text-on-surface-variant hover:text-primary border border-white/5">
+<svg class="w-6 h-6 mx-auto fill-current" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.84 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"></path></svg>
+</button>
+<button class="p-3 bg-surface-container-highest rounded-lg hover:bg-primary/20 transition-all text-on-surface-variant hover:text-primary border border-white/5">
+<svg class="w-6 h-6 mx-auto fill-current" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.6.113.793-.26.793-.577v-2.234c-3.338.726-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"></path></svg>
+</button>
+<button class="p-3 bg-surface-container-highest rounded-lg hover:bg-primary/20 transition-all text-on-surface-variant hover:text-primary border border-white/5">
+<span class="material-symbols-outlined mx-auto">mail</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="w-full bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-primary/10 mt-20">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-stack-lg px-6 md:px-margin-desktop py-stack-lg">
+<div class="col-span-1 lg:col-span-1">
+<div class="font-display-lg text-headline-md text-primary mb-6">GEARVERSE</div>
+<p class="font-body-md text-on-surface-variant mb-4">The ultimate destination for competitive hardware. Engineered for precision, designed for dominance.</p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary hover:text-tertiary cursor-pointer">language</span>
+<span class="material-symbols-outlined text-primary hover:text-tertiary cursor-pointer">public</span>
+<span class="material-symbols-outlined text-primary hover:text-tertiary cursor-pointer">terminal</span>
+</div>
+</div>
+<div>
+<h4 class="font-label-caps text-on-surface mb-6">MISSION CONTROL</h4>
+<ul class="flex flex-col gap-4 font-body-md">
+<li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="#">Support</a></li>
+<li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="#">Warranty</a></li>
+<li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="#">Shipping</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-caps text-on-surface mb-6">INTEL</h4>
+<ul class="flex flex-col gap-4 font-body-md">
+<li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="#">Terms of Service</a></li>
+<li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="#">Contact</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-caps text-on-surface mb-6">NEWSFEED</h4>
+<p class="font-body-md text-on-surface-variant mb-4">Get patch notes and gear drops.</p>
+<div class="flex">
+<input class="bg-surface border border-outline/30 rounded-l-lg p-3 text-on-surface w-full focus:ring-1 focus:ring-primary focus:border-primary" placeholder="Email" type="email">
+<button class="bg-primary-container text-white px-4 rounded-r-lg hover:bg-primary transition-all">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</div>
+<div class="px-6 md:px-margin-desktop py-8 border-t border-white/5 text-center">
+<p class="font-body-md text-on-surface-variant text-sm tracking-widest">© 2024 GEARVERSE. ENGINEERED FOR PRECISION.</p>
+</div>
+</footer>
+<script>
+        function toggleShareModal() {
+            const modal = document.getElementById('share-modal');
+            modal.classList.toggle('hidden');
+            modal.classList.toggle('flex');
+        }
+
+        function shareWishlist() {
+            toggleShareModal();
+        }
+
+        function clearAll() {
+            if(confirm('Are you sure you want to purge your arsenal? This action cannot be undone.')) {
+                const grid = document.getElementById('wishlist-grid');
+                const empty = document.getElementById('empty-state');
+                
+                // Animate out items
+                const cards = grid.querySelectorAll('.glass-card');
+                cards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.style.opacity = '0';
+                        card.style.transform = 'scale(0.8) translateY(20px)';
+                    }, index * 100);
+                });
+
+                setTimeout(() => {
+                    grid.classList.add('hidden');
+                    empty.classList.remove('hidden');
+                    empty.classList.add('flex');
+                    empty.style.opacity = '0';
+                    setTimeout(() => {
+                        empty.style.opacity = '1';
+                        empty.style.transition = 'opacity 0.5s ease-in';
+                    }, 50);
+                }, cards.length * 100 + 300);
+            }
+        }
+
+        // Add remove listener to cards
+        document.querySelectorAll('.material-symbols-outlined.text-error').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const card = this.closest('.glass-card');
+                card.style.opacity = '0';
+                card.style.transform = 'scale(0.9) translateY(20px)';
+                setTimeout(() => {
+                    card.remove();
+                    // Check if last card
+                    if(document.querySelectorAll('.glass-card').length === 0) {
+                        document.getElementById('wishlist-grid').classList.add('hidden');
+                        document.getElementById('empty-state').classList.remove('hidden');
+                        document.getElementById('empty-state').classList.add('flex');
+                    }
+                }, 300);
+            });
+        });
+
+        // Simple entrance animation
+        window.addEventListener('load', () => {
+            const cards = document.querySelectorAll('.glass-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100 + (index * 100));
+            });
+        });
+    </script>
+</body></html>
