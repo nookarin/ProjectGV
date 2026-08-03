@@ -1,0 +1,431 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>NEON STRIKE ARMORY | High-Performance Gaming Gear</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700;800&amp;family=Space+Mono:wght@400;700&amp;family=Kanit:wght@700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        :root {
+            --neon-purple: #9D4EDD;
+            --neon-pink: #FF00FF;
+            --neon-glow: rgba(157, 78, 221, 0.5);
+            --bg-dark: #0F0E17;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #e5e0ee;
+            font-family: 'Sora', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .font-kanit { font-family: 'Kanit', sans-serif; }
+
+        .glass-panel {
+            background: rgba(26, 24, 37, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(157, 78, 221, 0.2);
+        }
+
+        .neon-border-hover:hover {
+            border-color: rgba(157, 78, 221, 0.8);
+            box-shadow: 0 0 15px var(--neon-glow);
+        }
+
+        .neon-text-glow {
+            text-shadow: 0 0 8px var(--neon-glow);
+        }
+
+        /* Neon Gradient Border Style for Cards */
+        .neon-gradient-card {
+            position: relative;
+            background: #1A1825;
+            border-radius: 0.125rem; /* Matches DEFAULT border radius */
+            z-index: 1;
+            transition: all 0.5s ease;
+        }
+
+        .neon-gradient-card::before {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            border-radius: 0.125rem;
+            padding: 1px;
+            background: linear-gradient(135deg, #9D4EDD, #FF00FF);
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .neon-gradient-card:hover {
+            box-shadow: 0 0 25px rgba(157, 78, 221, 0.4), 0 0 45px rgba(255, 0, 255, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .product-card-zoom img {
+            transition: transform 0.5s ease;
+        }
+
+        .product-card-zoom:hover img {
+            transform: scale(1.05);
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        .glow-bg-orb {
+            filter: blur(80px);
+            animation: pulse-glow 4s infinite ease-in-out;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "tertiary": "#fface8",
+                        "on-secondary-fixed": "#2c0051",
+                        "on-surface-variant": "#d0c2d5",
+                        "on-secondary-container": "#d1a1ff",
+                        "on-error": "#690005",
+                        "surface-container-lowest": "#0e0d16",
+                        "on-tertiary-fixed-variant": "#840076",
+                        "surface-container-low": "#1c1a24",
+                        "error-container": "#93000a",
+                        "tertiary-container": "#d500bf",
+                        "inverse-primary": "#8433c4",
+                        "on-error-container": "#ffdad6",
+                        "surface": "#13121b",
+                        "error": "#ffb4ab",
+                        "primary": "#e0b6ff",
+                        "surface-variant": "#35333e",
+                        "on-primary-fixed": "#2e004e",
+                        "secondary-fixed-dim": "#ddb8ff",
+                        "on-tertiary": "#5e0053",
+                        "primary-fixed": "#f2daff",
+                        "secondary-fixed": "#f0dbff",
+                        "surface-container": "#201e28",
+                        "inverse-surface": "#e5e0ee",
+                        "surface-container-high": "#2a2933",
+                        "surface-tint": "#e0b6ff",
+                        "background": "#13121b",
+                        "on-primary-container": "#fffdff",
+                        "secondary-container": "#62259b",
+                        "surface-container-highest": "#35333e",
+                        "on-secondary": "#490081",
+                        "on-tertiary-fixed": "#3a0033",
+                        "secondary": "#ddb8ff",
+                        "on-tertiary-container": "#fffeff",
+                        "on-background": "#e5e0ee",
+                        "primary-container": "#9d4edd",
+                        "on-primary-fixed-variant": "#6a0baa",
+                        "outline": "#998d9e",
+                        "inverse-on-surface": "#312f39",
+                        "outline-variant": "#4d4353",
+                        "surface-bright": "#3a3842",
+                        "surface-dim": "#13121b",
+                        "tertiary-fixed-dim": "#fface8",
+                        "on-surface": "#e5e0ee",
+                        "tertiary-fixed": "#ffd7f0",
+                        "primary-fixed-dim": "#e0b6ff",
+                        "on-primary": "#4c007d",
+                        "on-secondary-fixed-variant": "#62259b"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    spacing: {
+                        "margin-desktop": "80px",
+                        "stack-md": "16px",
+                        "container-max": "1440px",
+                        "margin-mobile": "20px",
+                        "gutter": "24px",
+                        "stack-sm": "8px",
+                        "stack-lg": "32px"
+                    },
+                    fontFamily: {
+                        "display-lg": ["Sora"],
+                        "headline-md": ["Sora"],
+                        "label-caps": ["Space Mono"],
+                        "headline-lg": ["Sora"],
+                        "body-lg": ["Sora"],
+                        "body-md": ["Sora"],
+                        "headline-lg-mobile": ["Sora"]
+                    },
+                    fontSize: {
+                        "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "0.02em", "fontWeight": "800"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                        "headline-lg": ["40px", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#1A1825]/70 backdrop-blur-md border-b border-gradient-to-r from-primary to-tertiary shadow-[0_0_15px_rgba(157,78,221,0.3)] transition-all duration-300 ease-in-out border-b-2">
+<div class="flex justify-between items-center px-margin-desktop h-20 max-w-container-max mx-auto">
+<div class="font-display-lg text-headline-md tracking-tighter text-primary">GEARVERSE</div>
+<div class="hidden md:flex gap-stack-lg items-center">
+<div class="relative group">
+<a class="font-body-md text-body-md text-primary font-bold border-b-2 border-primary pb-1 flex items-center gap-1" href="#">
+                    ALL PRODUCTS
+                    <span class="material-symbols-outlined text-sm transition-transform group-hover:rotate-180">expand_more</span>
+</a>
+<!-- Dropdown Menu -->
+<div class="absolute top-full left-0 mt-2 w-[600px] bg-[#1A1825]/90 backdrop-blur-md border border-primary/30 rounded-xl p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+<div class="grid grid-cols-2 gap-8">
+<!-- Keyboards -->
+<div>
+<h4 class="font-label-caps text-label-caps text-primary mb-3 border-b border-primary/20 pb-1">KEYBOARDS</h4>
+<ul class="flex flex-col gap-2">
+<li class=""><a class="text-on-surface-variant hover:text-primary hover:neon-text-glow transition-all text-sm" href="#">STRIKE-85 PRO</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary hover:neon-text-glow transition-all text-sm" href="#">NEON MECHANICAL V2</a></li>
+</ul>
+</div>
+<!-- Mice -->
+<div>
+<h4 class="font-label-caps text-label-caps text-primary mb-3 border-b border-primary/20 pb-1">MICE</h4>
+<ul class="flex flex-col gap-2">
+<li class=""><a class="text-on-surface-variant hover:text-primary hover:neon-text-glow transition-all text-sm" href="#">PHANTOM AIR</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary hover:neon-text-glow transition-all text-sm" href="#">VOIDWALKER G1</a></li>
+</ul>
+</div>
+<!-- Systems -->
+<div>
+<h4 class="font-label-caps text-label-caps text-primary mb-3 border-b border-primary/20 pb-1">SYSTEMS</h4>
+<ul class="flex flex-col gap-2">
+<li class=""><a class="text-on-surface-variant hover:text-primary hover:neon-text-glow transition-all text-sm" href="#">NEBULOUS CORE V3</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary hover:neon-text-glow transition-all text-sm" href="#">TITAN RIG</a></li>
+</ul>
+</div>
+<!-- Headsets -->
+<div>
+<h4 class="font-label-caps text-label-caps text-primary mb-3 border-b border-primary/20 pb-1">HEADSETS</h4>
+<ul class="flex flex-col gap-2">
+<li class=""><a class="text-on-surface-variant hover:text-primary hover:neon-text-glow transition-all text-sm" href="#">SONIC STRIKE</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary hover:neon-text-glow transition-all text-sm" href="#">ECHO NEON</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">CONTACT</a>
+<div class="flex items-center gap-2 bg-primary/10 border border-primary/30 px-3 py-1 rounded-full animate-pulse">
+<span class="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_#e0b6ff]"></span>
+<span class="font-label-caps text-[10px] text-primary">NEW ARRIVALS</span>
+</div>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors group">
+<span class="material-symbols-outlined text-sm">language</span>
+<span class="font-label-caps text-[10px]">EN/US</span>
+</button>
+<div class="hidden lg:flex items-center bg-surface-container-low border border-outline-variant rounded-full px-4 py-1 gap-2 focus-within:border-primary transition-all">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm text-on-surface w-32 font-body-md placeholder:text-on-surface-variant/50" placeholder="Search gear..." type="text">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors text-sm">tune</button>
+</div>
+<button class="material-symbols-outlined text-primary hover:drop-shadow-[0_0_8px_rgba(224,182,255,0.8)] transition-all">notifications</button>
+<button class="material-symbols-outlined text-primary hover:drop-shadow-[0_0_8px_rgba(224,182,255,0.8)] transition-all">shopping_cart</button>
+<button class="material-symbols-outlined text-primary hover:drop-shadow-[0_0_8px_rgba(224,182,255,0.8)] transition-all">person</button>
+</div>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+<!-- Background Image -->
+<div class="absolute inset-0 z-0">
+<img alt="Futuristic gaming setup background" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXFbSEDsAk11wAHgpXpEqOzbHvClPF7M7As8H-h-gRQre7JgGyl0xhPQDoECyUADXNAsw7K_wDY1v-oBYtCZ1TTEL6yI8TXe3b22mHOffvu6aDniCOrMzhwMbLlhoJPO6QdhgiSUPjjlOEaMhNCYiDr2sQvVkbP-KNIsVhK6bI-kP5MlJABT5OIIRaN9GCI6tkBVI2b_WHlb6b-9FBZqchSNSSGfnLrqPzdAXzHSqEZ2Ir9lY4SpTF">
+<!-- Dark Overlay for Readability -->
+<div class="absolute inset-0 bg-background/40 backdrop-blur-[2px]"></div>
+</div>
+<!-- Centered Content -->
+<div class="relative z-10 flex flex-col items-center text-center gap-stack-md px-margin-mobile md:px-margin-desktop max-w-4xl">
+<span class="font-label-caps text-label-caps text-primary tracking-[0.2em] neon-text-glow">ULTIMATE PERFORMANCE GEAR</span>
+<h1 class="font-kanit text-[64px] md:text-[88px] leading-[1.1] font-extrabold uppercase tracking-tight text-on-background drop-shadow-2xl">
+                  ELEVATE YOUR <br><span class="text-primary neon-text-glow">GAMEPLAY</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface max-w-lg drop-shadow-md">
+                  Gear up with the most advanced tech designed for champions. Precision engineered components that give you the competitive edge.
+            </p>
+<div class="mt-stack-lg">
+<button class="bg-gradient-to-r from-[#9d4edd] to-[#ff00ff] text-white px-10 py-4 font-bold rounded-lg shadow-[0_0_20px_rgba(157,78,221,0.6)] hover:shadow-[0_0_35px_rgba(255,0,255,0.8)] hover:scale-105 transition-all duration-300 transform hover:-translate-y-1 uppercase tracking-wider">SHOP NOW</button>
+</div>
+</div>
+</section>
+<!-- Featured Categories (Bento) -->
+<section class="py-stack-lg px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+<!-- Keyboards -->
+<div class="glass-panel p-stack-lg rounded-xl flex flex-col items-center justify-center gap-stack-md group cursor-pointer transition-all duration-300 neon-border-hover">
+<span class="material-symbols-outlined text-4xl text-primary group-hover:scale-110 transition-transform">keyboard</span>
+<h3 class="font-label-caps text-label-caps">KEYBOARDS</h3>
+</div>
+<!-- Mice -->
+<div class="glass-panel p-stack-lg rounded-xl flex flex-col items-center justify-center gap-stack-md group cursor-pointer transition-all duration-300 neon-border-hover">
+<span class="material-symbols-outlined text-4xl text-primary group-hover:scale-110 transition-transform">mouse</span>
+<h3 class="font-label-caps text-label-caps">MICE</h3>
+</div>
+<!-- Headsets -->
+<div class="glass-panel p-stack-lg rounded-xl flex flex-col items-center justify-center gap-stack-md group cursor-pointer transition-all duration-300 neon-border-hover">
+<span class="material-symbols-outlined text-4xl text-primary group-hover:scale-110 transition-transform">headset</span>
+<h3 class="font-label-caps text-label-caps">HEADSETS</h3>
+</div>
+<!-- Systems -->
+<div class="glass-panel p-stack-lg rounded-xl flex flex-col items-center justify-center gap-stack-md group cursor-pointer transition-all duration-300 neon-border-hover">
+<span class="material-symbols-outlined text-4xl text-primary group-hover:scale-110 transition-transform">computer</span>
+<h3 class="font-label-caps text-label-caps">SYSTEMS</h3>
+</div>
+</div>
+</section>
+<!-- Top Picks Section -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-stack-md">
+<div>
+<span class="font-label-caps text-label-caps text-primary mb-2 block">CURATED ARMORY</span>
+<h2 class="font-headline-lg text-headline-lg uppercase font-bold">TOP PICKS</h2>
+</div>
+<a class="text-primary font-bold hover:underline" href="#">VIEW ALL COLLECTION</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Product Card 1 -->
+<div class="neon-gradient-card p-6 group cursor-pointer">
+<div class="relative mb-6 overflow-hidden rounded-lg bg-surface-container-low">
+<div class="absolute top-3 left-3 z-10 bg-primary text-on-primary-fixed px-3 py-1 rounded-full font-label-caps text-[10px] font-bold shadow-[0_0_10px_#e0b6ff]">NEW</div>
+<button class="absolute top-3 right-3 z-10 text-white/50 hover:text-tertiary transition-colors">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+<img alt="STRIKE-85 PRO" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKIlJjldhjxZfDoB5z3mWItK-4UKl3CBexF-1idDfdoI4m7jjW2aysvhjn7ORS7PnJ0sZ7LkfGOaSNXmKw4NGgZqbYsv3g_4yRXhy-vmqink4lLGdlgZj6M2-Nha0X5i7VIOkIigeSUDk3Qk3bpoRP1VnS153h7B8pgnpeXf6ekQeR4LJiKvr5R6CkIL-8gKEi4Y08iIUOySbVtlfQwsHTibTEIinQJ2X21-FtizMt8TAY6uOE_gZo6A">
+</div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-body-lg text-on-surface group-hover:text-primary transition-colors uppercase">STRIKE-85 PRO</h3>
+<span class="font-kanit text-2xl font-bold text-tertiary neon-text-glow">$189</span>
+</div>
+<p class="text-on-surface-variant text-sm mb-4">Mechanical Gaming Keyboard</p>
+<button class="w-full py-2 border border-primary/30 rounded-lg font-label-caps text-[12px] hover:bg-primary hover:text-on-primary transition-all uppercase font-bold tracking-widest">ADD TO CART</button>
+</div>
+<!-- Product Card 2 -->
+<div class="neon-gradient-card p-6 group cursor-pointer">
+<div class="relative mb-6 overflow-hidden rounded-lg bg-surface-container-low">
+<div class="absolute top-3 left-3 z-10 bg-tertiary text-on-tertiary-fixed px-3 py-1 rounded-full font-label-caps text-[10px] font-bold shadow-[0_0_10px_#fface8]">HOT</div>
+<button class="absolute top-3 right-3 z-10 text-white/50 hover:text-tertiary transition-colors">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+<img alt="PHANTOM AIR" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5JxXdIJ05IN6Q8FI_2ArMUOuozKixe6ndWAw2ZmWyfsoi7Lerf5emf_MXL3jLLy10blgi7V802QRvhZI4OpR-Aj3iZcwW5G6Zd95hWqAlkOJXgDhHYe8afiuQxOxG6ng0P51Gn5hP2X3ufM6ezvEja50TP8gL4ZLH01j3sM4PizjNyPNvFjiPg8G_h_5m9znTNiYAQH343BcIWrA-LMcqlWyYgVKxxrbvGTyjyqvP3z7X9ax9A02qvw">
+</div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-body-lg text-on-surface group-hover:text-primary transition-colors uppercase">PHANTOM AIR</h3>
+<span class="font-kanit text-2xl font-bold text-tertiary neon-text-glow">$129</span>
+</div>
+<p class="text-on-surface-variant text-sm mb-4">Ultra-light Wireless Mouse</p>
+<button class="w-full py-2 border border-primary/30 rounded-lg font-label-caps text-[12px] hover:bg-primary hover:text-on-primary transition-all uppercase font-bold tracking-widest">ADD TO CART</button>
+</div>
+<!-- Product Card 3 -->
+<div class="neon-gradient-card p-6 group cursor-pointer">
+<div class="relative mb-6 overflow-hidden rounded-lg bg-surface-container-low">
+<button class="absolute top-3 right-3 z-10 text-white/50 hover:text-tertiary transition-colors">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+<img alt="SONIC STRIKE" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDl93XwQV6j_8232-2-eyWwSZUGcSIuSxzA-E2bU8E5hPxYSLNMorCnvBvvtHCDAMqfy8JtcOKFE3bC95KZfLvJh39fn8Hn-QFYkkidj4ALVyhIWZmUEBlOlnrrZ61dSg_0m4Y-n7NIa-aMz8AxKc4grKV4Udvetrc28NO6DpkwrZlySVneKWeMSh2fc0BQjPOY9-wXa-HE3j4iSWMX83jG6K5_yeeWk2uI_wnuQ-NY-p82bPia22A4_g">
+</div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-body-lg text-on-surface group-hover:text-primary transition-colors uppercase">NEBULOUS CORE V3</h3>
+<span class="font-kanit text-2xl font-bold text-tertiary neon-text-glow">$3,499</span>
+</div>
+<p class="text-on-surface-variant text-sm mb-4">Spatial Audio Headset</p>
+<button class="w-full py-2 border border-primary/30 rounded-lg font-label-caps text-[12px] hover:bg-primary hover:text-on-primary transition-all uppercase font-bold tracking-widest">ADD TO CART</button>
+</div>
+</div>
+</section>
+<!-- New Arrivals Banner -->
+<section class="py-stack-lg px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="relative overflow-hidden rounded-3xl min-h-[400px] flex items-center bg-gradient-to-r from-[#1A1825] via-[#4c007d] to-[#9D4EDD]">
+<div class="absolute inset-0 opacity-30 mix-blend-overlay">
+<div class="w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary via-transparent to-transparent"></div>
+</div>
+<div class="relative z-10 px-12 md:px-20 grid grid-cols-1 md:grid-cols-2 items-center gap-gutter w-full">
+<div>
+<span class="bg-white/10 backdrop-blur-md px-4 py-1 rounded-full font-label-caps text-[12px] mb-6 inline-block">SEASONAL DROP</span>
+<h2 class="font-kanit text-[48px] md:text-[64px] font-extrabold leading-none mb-6 uppercase">NEW ARRIVALS<br>AVAILABLE NOW</h2>
+<p class="font-body-lg text-white/80 max-w-md mb-8">The 2024 Neon Series has landed. Limited edition units with bespoke finishes for the ultimate setup.</p>
+<button class="bg-white text-on-secondary-fixed px-8 py-3 rounded-lg font-bold hover:bg-on-surface transition-all transform hover:scale-105 uppercase tracking-widest">EXPLORE THE DROP</button>
+</div>
+<div class="hidden md:block">
+<img alt="New arrivals" class="w-full drop-shadow-2xl scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6p2fLs8VH7P9QzASoZKtd29vxmg3h7kAoM6krc8yEf6fDpZtqzjR_nTJMKhLhAAlZCFOqu05QJQbXhT05-B-fwRhGA1lO7aiKM5MdH-RbxHyvYPBTMhvYksYobT2v5PvFjsMvFZGx-lYdhEKY_oWfBeyyHKX61ktYltDWQtKPa7Bn8vIzCw0tL4adyzPWTHokJb9hBHKmzq7zv_J1DXkAUqMs3TgnVoEOpZ3gWS9BppXsCeE0H4Oufg">
+</div>
+</div>
+</div>
+</section>
+<!-- Trusted By Pros -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop bg-surface-container-lowest">
+<div class="max-w-container-max mx-auto">
+<h2 class="text-center font-label-caps text-label-caps text-on-surface-variant mb-12 opacity-60">TRUSTED BY THE WORLD'S BEST PROS</h2>
+<div class="flex flex-wrap justify-center items-center gap-16 md:gap-24 opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
+<div class="h-12 w-32 flex items-center justify-center font-kanit text-2xl text-on-background border border-outline-variant px-4 italic">APEX ELITE</div>
+<div class="h-12 w-32 flex items-center justify-center font-kanit text-2xl text-on-background border border-outline-variant px-4 italic">TEAM NOVA</div>
+<div class="h-12 w-32 flex items-center justify-center font-kanit text-2xl text-on-background border border-outline-variant px-4 italic">VOIDWALK</div>
+<div class="h-12 w-32 flex items-center justify-center font-kanit text-2xl text-on-background border border-outline-variant px-4 italic">ZENITH PC</div>
+<div class="h-12 w-32 flex items-center justify-center font-kanit text-2xl text-on-background border border-outline-variant px-4 italic">GLITCH OPS</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-stack-lg border-t border-outline-variant bg-surface-container-lowest">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop gap-gutter max-w-container-max mx-auto">
+<div class="font-display-lg text-headline-md text-primary">GEARVERSE ARMORY</div>
+<div class="flex flex-wrap justify-center gap-stack-md">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-tertiary transition-colors" href="#">Support</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-tertiary transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-tertiary transition-colors" href="#">Terms of Service</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-tertiary transition-colors" href="#">Warranty</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-tertiary transition-colors" href="#">Affiliates</a>
+</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant opacity-50">© 2024 GEARVERSE ARMORY. ALL RIGHTS RESERVED.</div>
+</div>
+</footer>
+<!-- Hyper-Visual Floating Live Chat Button -->
+<button class="fixed bottom-12 right-12 z-50 w-32 h-32 rounded-full bg-gradient-to-r from-[#9D4EDD] to-[#FF00FF] text-white flex flex-col items-center justify-center shadow-[0_0_35px_rgba(255,0,255,0.8)] hover:shadow-[0_0_50px_rgba(255,0,255,1)] hover:scale-110 transition-all duration-300 group animate-pulse">
+<span class="material-symbols-outlined text-[48px] mb-2">chat</span>
+<span class="font-label-caps text-[12px] tracking-widest font-bold">LIVE CHAT</span>
+</button>
+<script>
+    // Micro-interactions for scrolling
+    window.addEventListener('scroll', () => {
+        const nav = document.querySelector('nav');
+        if (window.scrollY > 50) {
+            nav.classList.add('py-1', 'bg-[#1A1825]/90');
+            nav.classList.remove('h-20');
+            nav.classList.add('h-16');
+        } else {
+            nav.classList.remove('py-1', 'bg-[#1A1825]/90');
+            nav.classList.add('h-20');
+            nav.classList.remove('h-16');
+        }
+    });
+</script>
+
+
+</body></html>
