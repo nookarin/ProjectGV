@@ -1,0 +1,16 @@
+{
+  "name": "projectgv",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "GEARVERSE gaming gear store",
+  "scripts": {
+    "db:init": "node --env-file-if-exists=.env mongo-init.js",
+    "start": "node --env-file-if-exists=.env server.js",
+    "dev": "node --watch --env-file-if-exists=.env server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "mongodb": "^6.8.0"
+  }
+}
