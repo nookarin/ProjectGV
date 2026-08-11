@@ -4,22 +4,18 @@ erDiagram
     User ||--o{ Wishlist : add
     User ||--o{ ShoppingCart : add
 
-    Order ||--|{ OrderItem : contains
     Order ||--o{ PromoCode : applies
 
     Order ||--|{ ShoppingCart : checkout_from
 
-    Product ||--o{ OrderItem : included_in
+    Product ||--o{ Order : included_in
     Product ||--o{ Review : has
     Product ||--o{ Bundle : bundle_in
-    Product ||--o{ Brand : came_from
     Product ||--o{ Color : come_in
 
     Manufacturer ||--o{ Product : produces
 
-    Distributor ||--o{ Marketplace : delivers_to
-
-    Marketplace }o--|| Order : receives
+    Distributor }o--|| Order : receives
 
     Category ||--|{ Product : contains
     SubCategory ||--|{ Category : contains
@@ -35,8 +31,8 @@ User{
     string lastname
     string email
     string phone_number
-    string address1
-    string address2
+    string address1 
+    string address2 
     string role "customer | admin"
     date created_at 
 }
@@ -49,7 +45,6 @@ Product{
     string description
     ObjectId category_id FK
     ObjectId subcategory_id FK
-    ObjectId brand_id FK
     ObjectId color_id FK
 
     string connectivity_type
@@ -71,31 +66,20 @@ SubCategory{
     string subcategory_name "mechanical | magnetic | rubber-dome | wired | wireless | headset"
 }
 
-Brand{
-    ObjectId brand_id PK
-    string brand_name "Logitech | Razer"
-}
 
 Order{
     ObjectId order_id PK
-    int order_number
-    string status "pending | paid | shipped | completed"
+    ObjectId distributor_id FK
     ObjectId user_id FK
+    int total_quantity
     string payment_method
-    string shipping_address
     float final_price
     date order_date
+    string payment_status "pending | paid"
+    ObjectId product_id FK
 }
 
 %%order merged with transaction, created orderitem
-
-OrderItem{
-    ObjectId orderitem_id PK
-    ObjectId order_id FK
-    ObjectId product_id FK
-    int quantity
-    float unit_price
-}
 
 ShoppingCart{
     ObjectId cart_id PK
@@ -112,8 +96,8 @@ Wishlist{
 Review{
     ObjectId review_id PK
     ObjectId user_id FK
-    string username
-    Object orderitem_id FK
+    Object product_id FK
+    date review_date
     float rating
     string comment
 }
@@ -125,17 +109,20 @@ Bundle{
     float bundle_price
     boolean is_active
     int quantity_limit
+    ObjectId product_id FK
 }
 
 PromoCode{
     ObjectId promo_id
     string code
-    string promo_type
     float min_order_price
     int max_use
     boolean is_active
     date promo_start
     date expire_at
+    string description
+    float discount_amount
+    ObjectId order_id FK
 }
 
 ProductVariant{
@@ -164,16 +151,19 @@ ProductVariant{
 Color{
     ObjectId color_id PK
     string color_name
+    ObjectId product_id FK
 }
 
 KBSwitch{
     ObjectId switch_id PK
     string switch_name
+    ObjectId product_id FK
 }
 
 Keycap{
     ObjectId keycap_id PK
     string keycap_name
+    ObjectId product_id FK
 }
 
 %%added manufacturer and distributor/platforms
@@ -182,16 +172,14 @@ Manufacturer{
     ObjectId manufacturer_id PK
     string manufacturer_name
     string manufacturer_location
+    ObjectId product_id FK
 }
 
 Distributor{
     ObjectId distributor_id PK
     string distributor_name
     string distributor_location
-}
-
-Marketplace{
-    ObjectID marketplace_id PK
-    string marketplace_name
-    string marketplace_location
+    
+    ObjectId order_id FK
+    string shipping_status "shipped | on the way | out of delivery | completed"
 }
