@@ -53,6 +53,8 @@ Product{
     float price
     float weight
     int stock
+
+    ObjectId manufacturer_id FK
 }
 
 Category{
@@ -127,8 +129,6 @@ PromoCode{
 
 ProductVariant{
     ObjectId product_id FK
-    ObjectId category_id FK
-    ObjectId subcategory_id FK
 
     %%mouse
     int dpi

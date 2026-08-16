@@ -10,7 +10,8 @@
     "dev": "node --watch --env-file-if-exists=.env server.js"
   },
   "dependencies": {
+    "dotenv": "^17.4.2",
     "express": "^4.21.2",
-    "mongodb": "^6.8.0"
+    "mongodb": "^6.21.0"
   }
 }
