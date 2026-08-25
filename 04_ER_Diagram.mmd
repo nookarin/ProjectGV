@@ -40,8 +40,8 @@ User{
     string lastname
     string email
     string phone_number
-    string address1
-    string address2
+    string address1 
+    string address2 
     string role "customer | admin"
     date created_at 
 }
@@ -62,6 +62,8 @@ Product{
     float price
     float weight
     int stock
+
+    ObjectId manufacturer_id FK
 }
 
 Category{
@@ -81,6 +83,7 @@ Order{
     int order_number
     string status "pending | paid | shipped | completed"
     ObjectId user_id FK
+    int total_quantity
     string payment_method
     string shipping_address
     ObjectId promo_id FK 
@@ -142,6 +145,7 @@ Bundle{
     float bundle_price
     boolean is_active
     int quantity_limit
+    ObjectId product_id FK
 }
 
 BundleItem {
@@ -154,13 +158,15 @@ BundleItem {
 PromoCode{
     ObjectId promo_id PK
     string code
-    string promo_type
     float min_order_price
     float discount_value
     int max_use
     boolean is_active
     date promo_start
     date expire_at
+    string description
+    float discount_amount
+    ObjectId order_id FK
 }
 
 ProductVariant{
@@ -189,16 +195,19 @@ ProductVariant{
 Color{
     ObjectId color_id PK
     string color_name
+    ObjectId product_id FK
 }
 
 KBSwitch{
     ObjectId switch_id PK
     string switch_name
+    ObjectId product_id FK
 }
 
 Keycap{
     ObjectId keycap_id PK
     string keycap_name
+    ObjectId product_id FK
 }
 
 %%added manufacturer and distributor/platforms
@@ -207,6 +216,7 @@ Manufacturer{
     ObjectId manufacturer_id PK
     string manufacturer_name
     string manufacturer_location
+    ObjectId product_id FK
 }
 
 Distributor{
